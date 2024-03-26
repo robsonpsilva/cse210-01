@@ -18,7 +18,9 @@ def select_player_input():
     user_input_flag = not user_input_flag
     return message
     
-     
+
+if __name__ == "__main__":
+    main()  
     
 
 def main():
