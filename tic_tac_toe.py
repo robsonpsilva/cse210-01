@@ -21,6 +21,23 @@ def generates_and_fill_grid(grid, option, mark =''):
 
     return grid
 
+def check_grid_position_available(grid, option):
+    """
+        This function verifies if the user option is available,
+        because in TIC-TAC-TOE, a placehold ocupied before can't be changed.
+    """
+    flag = True #True means free position
+    if option in ['1','2','3']:
+        if grid[0][2 * (int(option)-1)] in ['x','o']:
+            flag = False #Means ocupied
+    elif option in ['4','5','6']:
+        if grid[2][2 * (int(option)-4)] in ['x','o']:
+            flag = False #Means ocupied
+    elif option in ['7','8','9']:
+        if grid[4][2 * (int(option)-7)] in ['x','o']:
+            flag = False #Means ocupied
+    return flag
+
 def print_grid(grid):
     #prints the grid in console
     grid_string = ''
@@ -52,8 +69,9 @@ def main():
 
         #Check if the data entry is integer number
         if answer.isinstance(int) == True:
-            #if number checks if it is in range between 1 and 9
+            #if number THEN checks if it is in range between 1 and 9
             if answer in ['1','2','3','4','5','6','7','8','9']:
+                #User entered a number in the right range
                 ...
             else:
                 #Means data entry is out of the range
