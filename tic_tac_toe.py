@@ -64,15 +64,24 @@ def select_player_input(user_input_flag):
 def main():
     flag = True
     while True:
-         
-        answer = select_player_input(flag)
+
+        #Show the tic-tac-toe grid because the player needs to choose 
+        #the position they are going to select
+        print_grid(grid)
+
+        #gets user input 
+        answer = input(select_player_input(flag))
 
         #Check if the data entry is integer number
-        if answer.isinstance(int) == True:
+        if answer.isdigit() == True:
             #if number THEN checks if it is in range between 1 and 9
             if answer in ['1','2','3','4','5','6','7','8','9']:
                 #User entered a number in the right range
-                ...
+                
+                #Verifies if the position is free
+                if check_grid_position_available(grid,answer) == True:
+                    #Means this position is free to use
+                    ...
             else:
                 #Means data entry is out of the range
                 print('Error: Data entry must be a integer between 1 and 9.')
