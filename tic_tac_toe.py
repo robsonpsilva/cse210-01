@@ -1,10 +1,6 @@
 
 user_input_flag = True
-grid = [['1','|','2','|','3'],
-        ['-','+','-','+','-'],
-        ['4','|','5','|','6'],
-        ['-','+','-','+','-'],
-        ['7','|','8','|','9']]
+
 
 def generates_and_fill_grid(grid, option, mark =''):
     """
@@ -63,6 +59,11 @@ def select_player_input(user_input_flag):
 
 def main():
     flag = True
+    grid = [['1','|','2','|','3'],
+        ['-','+','-','+','-'],
+        ['4','|','5','|','6'],
+        ['-','+','-','+','-'],
+        ['7','|','8','|','9']]
     while True:
 
         #Show the tic-tac-toe grid because the player needs to choose 
@@ -81,7 +82,24 @@ def main():
                 #Verifies if the position is free
                 if check_grid_position_available(grid,answer) == True:
                     #Means this position is free to use
-                    ...
+                    if flag == True:
+                        #Storage the player choice 
+                        #Each player has one mark "x" or "y"
+                        #True means x
+                        grid = generates_and_fill_grid(grid,answer, 'x')
+                        flag = False
+                    else:
+                        #Storage the player choice 
+                        #Each player has one mark "x" or "y"
+                        #False means y 
+                        grid = generates_and_fill_grid(grid,answer, 'o')
+                        flag = True
+                else:
+                    #Means player selected a ocupied place
+                    print('Error: The place selected is ocupied.')
+                    answer = input('Type q if you want to quit or everyone else to return to the application.')
+                    if answer.lower() == 'q':
+                        break        
             else:
                 #Means data entry is out of the range
                 print('Error: Data entry must be a integer between 1 and 9.')
