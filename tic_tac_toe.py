@@ -55,7 +55,9 @@ def select_player_input(user_input_flag):
     else:
         message = 'o\'s turn to choose a square (1-9):'    
     return message
-    
+
+def validate_player_victory(grid):
+    pass
 
 def main():
     flag = True
@@ -94,6 +96,9 @@ def main():
                         #False means y 
                         grid = generates_and_fill_grid(grid,answer, 'o')
                         flag = True
+                    
+                    #checks whether the player won the game with the last move
+                        
                 else:
                     #Means player selected a ocupied place
                     print('Error: The place selected is ocupied.')
