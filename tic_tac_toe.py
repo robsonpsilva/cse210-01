@@ -1,3 +1,11 @@
+"""
+    Assignment - Write a code to perform a game Tiic-Tac-Toe after 
+    lesson designation.
+
+    Author: Robson Paulo da Silva
+
+"""
+
 
 user_input_flag = True
 
@@ -57,15 +65,32 @@ def select_player_input(user_input_flag):
     return message
 
 def validate_player_victory(grid):
-    pass
+    """
+     [['1','|','2','|','3'],
+      ['-','+','-','+','-'],
+      ['4','|','5','|','6'],
+      ['-','+','-','+','-'],
+      ['7','|','8','|','9']]
+    """
+    flag = grid[0][0] == grid[0][2] == grid[0][4] or\
+           grid[2][0] == grid[2][2] == grid[2][4] or\
+           grid[4][0] == grid[4][2] == grid[4][4] or\
+           grid[0][0] == grid[2][0] == grid[4][0] or\
+           grid[0][2] == grid[2][2] == grid[4][2] or\
+           grid[0][4] == grid[2][4] == grid[4][4] or\
+           grid[0][0] == grid[2][2] == grid[4][4] or\
+           grid[0][4] == grid[2][2] == grid[4][0]
+           
+    return flag
 
 def main():
     flag = True
-    grid = [['1','|','2','|','3'],
-        ['-','+','-','+','-'],
-        ['4','|','5','|','6'],
-        ['-','+','-','+','-'],
-        ['7','|','8','|','9']]
+    grid =  [['1','|','2','|','3'],
+      ['-','+','-','+','-'],
+      ['4','|','5','|','6'],
+      ['-','+','-','+','-'],
+      ['7','|','8','|','9']]
+    
     while True:
 
         #Show the tic-tac-toe grid because the player needs to choose 
@@ -98,7 +123,17 @@ def main():
                         flag = True
                     
                     #checks whether the player won the game with the last move
-                        
+                    if validate_player_victory(grid) == True:
+                        print('Congratulations you win the game!')
+                        answer = input('Type q if you want to quit or everyone else to return to the application.')
+                        if answer.lower() == 'q':
+                            break
+                        else:
+                             grid = [['1','|','2','|','3'],
+                                    ['-','+','-','+','-'],
+                                    ['4','|','5','|','6'],
+                                    ['-','+','-','+','-'],
+                                    ['7','|','8','|','9']]   
                 else:
                     #Means player selected a ocupied place
                     print('Error: The place selected is ocupied.')
