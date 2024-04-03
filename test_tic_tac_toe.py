@@ -1,6 +1,7 @@
-from tic_tac_toe import print_grid, generates_and_fill_grid, check_grid_position_available
+from tic_tac_toe import print_grid, generates_and_fill_grid, check_grid_position_available,\
+validate_player_victory
+
 import pytest
-import collections
 
 def test_print_grid():
     grid = [['1','|','2','|','3'],
@@ -67,6 +68,36 @@ def test_check_grid_position_available():
         ['-','+','-','+','-'],
         ['7','|','8','|','o']]
     assert check_grid_position_available(grid_aux, '9') == False
+
+def test_validate_player_victory():
+    grid = [['x','|','x','|','x'],
+        ['-','+','-','+','-'],
+        ['4','|','5','|','6'],
+        ['-','+','-','+','-'],
+        ['7','|','8','|','9']]
+    assert validate_player_victory(grid) == True
+
+    grid = [['x','|','x','|','o'],
+        ['-','+','-','+','-'],
+        ['4','|','o','|','6'],
+        ['-','+','-','+','-'],
+        ['o','|','8','|','9']]
+    assert validate_player_victory(grid) == True
+
+    grid = [['x','|','x','|','o'],
+        ['-','+','-','+','-'],
+        ['4','|','o','|','6'],
+        ['-','+','-','+','-'],
+        ['x','|','8','|','9']]
+    assert validate_player_victory(grid) == False
+
+    grid = [['1','|','2','|','3'],
+        ['-','+','-','+','-'],
+        ['4','|','5','|','6'],
+        ['-','+','-','+','-'],
+        ['7','|','8','|','9']]
+    assert validate_player_victory(grid) == False
+
 
 # Call the main function that is part of pytest so that the
 # computer will execute the test functions in this file.
